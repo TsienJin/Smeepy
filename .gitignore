@@ -3,6 +3,8 @@
 ### Project Files
 **/*.idea
 
-
 ### Dependencies
 **/node_modules/
+
+### Build Outputs
+**/dist/
