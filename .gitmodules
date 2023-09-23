@@ -1,3 +1,6 @@
 [submodule "Smeepy-Homepage"]
 	path = Smeepy-Homepage
 	url = https://github.com/TsienJin/Smeepy-Homepage.git
+[submodule "Smeepy-Documentation"]
+	path = Smeepy-Documentation
+	url = https://github.com/TsienJin/Smeepy-Documentation.git
