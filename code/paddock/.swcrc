@@ -13,6 +13,9 @@
     },
     "baseUrl": "."
   },
+  "exclude": [
+    ".test.ts"
+  ],
   "module": {
     "type": "commonjs"
   }
