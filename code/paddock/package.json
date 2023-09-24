@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"npm run dev:build\" \"npm run dev:start\"",
-    "dev:build": "swc src --ignore ./**/*.test.ts -w --out-dir dist",
+    "dev:build": "swc src -w --out-dir dist",
     "dev:start": "NODE_ENV=dev nodemon --watch \"dist/**/*\" -e js ./dist/index.js",
     "test": "jest",
-    "build": "swc src --ignore ./**/*.test.ts -d dist",
-    "start": "NODE_ENV=production node dist/index.js"
+    "build": "swc src -d dist",
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "Ong Tsien Jin",
