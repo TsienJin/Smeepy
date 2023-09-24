@@ -1,4 +1,9 @@
 
+### Sensitive Files (Including envionment files)
+**/*.env
+**/*.env.*
+**/.env
+**/.env.*
 
 ### Project Files
 **/*.idea
