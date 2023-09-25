@@ -1,0 +1,29 @@
+version: '3.8'
+name: smeepy
+
+services:
+
+  database-postgresql:
+    build:
+      context: ../database
+      dockerfile: Dockerfile
+    container_name: Smeepy-Database-PostgreSQL
+    restart: unless-stopped
+    volumes:
+      - smeepy-database-postgresql:/var/lib/postgresql/data
+    networks:
+      - smeepy-internal
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "9000:5432"
+
+
+
+
+volumes:
+  smeepy-database-postgresql:
+
+networks:
+  smeepy-internal:
