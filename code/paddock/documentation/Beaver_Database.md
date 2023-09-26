@@ -1,5 +1,5 @@
 
-# Database Documentation
+# Beaver Database Documentation
 
 > [!NOTE]\
 > This document outlines the relationships, schema, and database architecture.
@@ -59,4 +59,43 @@ flowchart BT
     end
     
     express-->|3. Response|client
+```
+
+---
+
+## Relations
+
+To incorporate `Beaver` into the suite of products in `Smeepy`, `API keys` are used to track,
+authorise, and authenticate actions that occur outside of `Paddock`.
+
+```mermaid
+erDiagram
+    paddock_user{}
+    
+    paddock_project{
+        uuid id PK
+        string name
+        string description
+        DateTime created_at
+        DateTime updated_at
+    }
+    
+    paddock_api_key{
+        uuid id PK
+        string label
+        string description
+        DateTime created_at
+        uuid project_id FK
+    }
+    
+    beaver_log{
+        uuid id PK
+        string log
+        DateTime created_at
+        uuid paddock_api_key FK
+    }
+    
+    paddock_user |o--o{ paddock_project : "Has projects"
+    paddock_project |o--o{ paddock_api_key : "Keys"
+    paddock_api_key ||--o{ beaver_log : "Logs"
 ```
