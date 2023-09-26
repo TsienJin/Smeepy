@@ -28,7 +28,9 @@ model paddock_project {
 // Storing project keys
 /////////////////////
 model paddock_api_key {
-  key String @id @unique
+  key         String  @id @unique
+  label       String
+  description String?
 
   created_at DateTime @default(now())
 
