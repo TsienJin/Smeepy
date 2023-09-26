@@ -1,12 +1,10 @@
-version: '3.8'
+version: '3.9'
 name: smeepy
 
 services:
 
   database-postgresql:
-    build:
-      context: ../database
-      dockerfile: Dockerfile
+    image: postgres:latest
     container_name: Smeepy-Database-PostgreSQL
     restart: unless-stopped
     volumes:
@@ -19,11 +17,22 @@ services:
     ports:
       - "9000:5432"
 
+  database-redis:
+    image: redis:latest
+    container_name: Smeepy-Database-Redis
+    restart: unless-stopped
+    volumes:
+      - smeepy-database-redis:/data
+    networks:
+      - smeepy-internal
+    ports:
+      - "9010:6379"
 
 
 
 volumes:
   smeepy-database-postgresql:
+  smeepy-database-redis:
 
 networks:
   smeepy-internal:
