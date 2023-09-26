@@ -10,11 +10,45 @@ datasource db {
   url      = env("DATABASE_POSTGRESQL")
 }
 
-model breaver_log {
+/////////////////////
+// Storing projects
+/////////////////////
+model paddock_project {
+  id          String  @id @unique @default(uuid())
+  name        String
+  description String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  keys paddock_api_key[] @relation("key_for_project")
+}
+
+/////////////////////
+// Storing project keys
+/////////////////////
+model paddock_api_key {
+  key String @id @unique
+
+  created_at DateTime @default(now())
+
+  project_id String
+  project    paddock_project @relation("key_for_project", fields: [project_id], references: [id])
+
+  beaver_logs beaver_log[] @relation("beaver_api_log")
+}
+
+/////////////////////
+// Storing projects
+/////////////////////
+model beaver_log {
   id         String   @id @default(uuid())
-  api_key    String
   log        String
   created_at DateTime @default(now())
 
+  api_key         String
+  paddock_api_key paddock_api_key @relation("beaver_api_log", fields: [api_key], references: [key])
+
   @@index([api_key, created_at(sort: Desc)])
+  @@index([api_key])
 }
