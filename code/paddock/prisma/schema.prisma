@@ -34,8 +34,8 @@ model paddock_api_key {
 
   created_at DateTime @default(now())
 
-  project_id String
-  project    paddock_project @relation("key_for_project", fields: [project_id], references: [id])
+  paddock_project_id String
+  paddock_project    paddock_project @relation("key_for_project", fields: [paddock_project_id], references: [id])
 
   beaver_logs beaver_log[] @relation("beaver_api_log")
 }
@@ -48,9 +48,9 @@ model beaver_log {
   log        String
   created_at DateTime @default(now())
 
-  api_key         String
-  paddock_api_key paddock_api_key @relation("beaver_api_log", fields: [api_key], references: [key])
+  paddock_api_key String
+  paddock_api     paddock_api_key @relation("beaver_api_log", fields: [paddock_api_key], references: [key])
 
-  @@index([api_key, created_at(sort: Desc)])
-  @@index([api_key])
+  @@index([paddock_api_key, created_at(sort: Desc)])
+  @@index([paddock_api_key])
 }
