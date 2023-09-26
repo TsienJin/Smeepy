@@ -1,23 +1,6 @@
-// @ts-ignore
 import express, {Request, Response} from "express"
-import * as dotenv from "dotenv"
 import * as process from "process"
 
-
-/**
- * Loads .env.dev only if in dev environment.
- *
- * Possible Environments:
- * 1. dev
- * 2. staging (handled by docker)
- * 3. production (handled by docker)
- */
-if(process.env.NODE_ENV==="dev"){
-  console.info("Loading development environment!")
-  dotenv.config({
-    path: __dirname+"/../.env.dev"
-  })
-}
 
 const app = express()
 
