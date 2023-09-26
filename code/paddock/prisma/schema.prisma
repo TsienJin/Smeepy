@@ -7,5 +7,12 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_POSTGRESQL")
+}
+
+model breaver_log {
+  id         String   @id @default(uuid())
+  api_key    String
+  log        String
+  created_at DateTime @default(now())
 }
