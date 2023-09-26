@@ -8,10 +8,9 @@
     "dev:build": "swc src -w --out-dir dist",
     "dev:start": "dotenv -e .env.dev -- nodemon --watch \"dist/**/*\" -e js ./dist/index.js",
     "test": "jest",
-    "prisma:dev": "npm run prisma:dev:generate && npm run prisma:dev:migrate && npm run prisma:dev:push",
+    "prisma:dev": "npm run prisma:dev:generate && npm run prisma:dev:migrate",
     "prisma:dev:generate": "npx prisma generate",
     "prisma:dev:migrate": "dotenv -e .env.dev -- npx prisma migrate dev",
-    "prisma:dev:push": "dotenv -e .env.dev -- npx prisma db push",
     "build": "swc src -d dist",
     "start": "node dist/index.js"
   },

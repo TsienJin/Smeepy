@@ -15,4 +15,6 @@ model breaver_log {
   api_key    String
   log        String
   created_at DateTime @default(now())
+
+  @@index([api_key, created_at(sort: Desc)])
 }
