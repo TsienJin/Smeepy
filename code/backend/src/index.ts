@@ -18,7 +18,7 @@ app.get("/", (req:Request, res:Response) => {
 
 app.use("/beaver", beaver_router)
 
-app.listen(process.env.EXPRESS_PORT||8000, async ()=>{
+app.listen(process.env.EXPRESS_PORT||8000, ()=>{
   if (process.env.EXPRESS_PORT==undefined){console.warn("Express Port not set! Using fallback port!")}
   console.info(`🚀 Express app listening on port ${process.env.EXPRESS_PORT||8000}`)
   //
