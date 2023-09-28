@@ -10,6 +10,14 @@ datasource db {
   url      = env("DATABASE_POSTGRESQL")
 }
 
+model paddock_user {
+  id       String @id @unique @default(uuid())
+  email    String @unique
+  password String
+
+  paddock_projects paddock_project[] @relation("project_creator")
+}
+
 /////////////////////
 // Storing projects
 /////////////////////
@@ -22,6 +30,9 @@ model paddock_project {
   updated_at DateTime @default(now()) @updatedAt
 
   keys paddock_api_key[] @relation("key_for_project")
+
+  paddock_user_creator    paddock_user? @relation("project_creator", fields: [paddock_user_creator_Id], references: [id])
+  paddock_user_creator_Id String?
 }
 
 /////////////////////
