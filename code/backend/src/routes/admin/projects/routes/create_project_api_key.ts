@@ -12,13 +12,14 @@ export const create_project_api_key:Handler = async(req:Request, res:Response)=>
 
   try{
 
+    // get params from req
     const params = await validate_schema<endpoint_project_create_api_key_schema>(endpoint_project_create_api_key_schema_validator, req.body)
-
     if(params===undefined){
       res.status(400).json({message:"Missing parameters!"})
       return
     }
-    
+
+    // create API key
     const api_key = await DBClient.instance.paddock_api_key.create({
       data: {
         label: params.api_label,
