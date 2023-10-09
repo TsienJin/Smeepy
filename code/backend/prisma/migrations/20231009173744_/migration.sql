@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "paddock_api_key" ADD COLUMN     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
