@@ -35,25 +35,48 @@ model paddock_project {
 
   paddock_user_creator    paddock_user @relation("project_creator", fields: [paddock_user_creator_Id], references: [id])
   paddock_user_creator_Id String
+
+  @@index([id])
 }
 
 /////////////////////
 // Storing project keys
 /////////////////////
 model paddock_api_key {
-  key         String  @id @unique @default(uuid())
+  id          String  @id @default(uuid())
+  key         String  @unique @default(uuid())
   label       String
   description String?
-
-  enabled Boolean @default(true)
 
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
+  // Relation to paddock project
   paddock_project_id String
   paddock_project    paddock_project @relation("key_for_project", fields: [paddock_project_id], references: [id])
 
+  // Relation to API key permissions (one-to-one)
+  paddock_api_key_services    paddock_api_key_services @relation("services", references: [id], fields: [paddock_api_key_services_id])
+  paddock_api_key_services_id String                   @unique
+
+  // Relation to services
   beaver_logs beaver_log[] @relation("beaver_api_log")
+
+  @@index([id, key])
+  @@index(key)
+}
+
+/////////////////////
+// API key permissions to use products
+/////////////////////
+model paddock_api_key_services {
+  id String @id @default(uuid())
+
+  // Relation to API key
+  paddock_api_key paddock_api_key? @relation("services")
+
+  // Configuration/perms for servies
+  enable_beaver Boolean @default(false)
 }
 
 /////////////////////
@@ -68,5 +91,5 @@ model beaver_log {
   paddock_api     paddock_api_key @relation("beaver_api_log", fields: [paddock_api_key], references: [key])
 
   @@index([paddock_api_key, created_at(sort: Desc)])
-  @@index([paddock_api_key])
+  @@index(paddock_api_key)
 }
