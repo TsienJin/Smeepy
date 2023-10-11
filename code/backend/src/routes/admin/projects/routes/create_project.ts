@@ -6,9 +6,12 @@ import {
   endpoint_project_create_schema_validator
 } from "@routes/admin/projects/structs/project_endpoints";
 import DBClient from "@src/objects/db";
+import {BackendHandler, BackendRequest} from "@src/globals/types_and_all";
+import assert_not_null from "@src/utils/assert_not_null";
+import {IJwt} from "@src/utils/jwt.types";
 
 
-export const create_project:Handler = async (req:Request, res:Response) => {
+export const create_project:BackendHandler = async (req:BackendRequest, res:Response) => {
 
   try {
 
@@ -20,7 +23,7 @@ export const create_project:Handler = async (req:Request, res:Response) => {
     }
 
     // fetch user information
-    const userJwt = decodeJwt(req.headers.authorization||"")
+    const userJwt = assert_not_null<IJwt>(req.jwt)
 
     // create project with provided params
     const proj = await DBClient.instance.paddock_project.create({
