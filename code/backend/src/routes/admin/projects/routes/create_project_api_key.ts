@@ -1,5 +1,4 @@
 import {Handler, Request, Response} from "express";
-import {decodeJwt} from "@src/utils/jwt";
 import {validate_schema} from "@src/schema/validate_schema";
 import {
   endpoint_project_create_api_key_schema,
