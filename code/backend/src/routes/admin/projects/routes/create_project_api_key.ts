@@ -28,9 +28,16 @@ export const create_project_api_key:Handler = async(req:Request, res:Response)=>
           connect: {
             id: params.project_id
           }
+        },
+        paddock_api_key_services: {
+          create: {}
         }
       },
-
+      select: {
+        id: true,
+        key: true,
+        paddock_api_key_services:true
+      }
     })
 
     res.status(200).json({message:"Ok!", api_key:api_key})
