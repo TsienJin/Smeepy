@@ -1,6 +1,6 @@
 import {Handler, NextFunction, Request, Response} from "express";
 import {decodeJwt, generateJwt} from "@src/utils/jwt";
-import {BackendHandler, BackendRequest} from "@src/globals/types_and_all";
+import {BackendHandler, BackendRequest} from "@src/globals/types_and_all.types";
 
 
 export default function require_login():BackendHandler{

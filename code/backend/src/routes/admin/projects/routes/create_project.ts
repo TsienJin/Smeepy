@@ -6,7 +6,7 @@ import {
   endpoint_project_create_schema_validator
 } from "@routes/admin/projects/structs/project_endpoints";
 import DBClient from "@src/objects/db";
-import {BackendHandler, BackendRequest} from "@src/globals/types_and_all";
+import {BackendHandler, BackendRequest} from "@src/globals/types_and_all.types";
 import assert_not_null from "@src/utils/assert_not_null";
 import {IJwt} from "@src/utils/jwt.types";
 
