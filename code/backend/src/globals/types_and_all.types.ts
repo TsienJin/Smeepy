@@ -21,8 +21,8 @@ export interface BackendRequest extends Request {
  * Updated types to include Backend Request
  */
 export interface BackendHandler extends Handler {
-  (req: BackendRequest<P, ResBody, ReqBody, ReqQuery, LocalsObj>,
-   res: Response<ResBody, LocalsObj>,
+  (req: BackendRequest,
+   res: Response,
    next: NextFunction)
   :void
 }
