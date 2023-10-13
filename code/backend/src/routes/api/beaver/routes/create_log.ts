@@ -7,6 +7,7 @@ import {
   endpoint_beaver_log_create_schema_validator
 } from "@routes/api/beaver/structs/create_log_struct";
 import DBClient from "@src/objects/db";
+import RedisClient from "@src/objects/redis_instance";
 
 
 /**
@@ -22,6 +23,7 @@ export const beaver_create_log:BackendHandler = async (req:BackendRequest, res:R
     const data = await validate_schema<endpoint_beaver_log_create_schema>(endpoint_beaver_log_create_schema_validator, req.body)
     const solid_data = assert_not_null<endpoint_beaver_log_create_schema>(data)
 
+    // creates the log in the DB to persist
     const newLog = await DBClient.instance.beaver_log.create({
       data: {
         label: solid_data.label,
@@ -31,8 +33,8 @@ export const beaver_create_log:BackendHandler = async (req:BackendRequest, res:R
       }
     })
 
-    console.log(newLog)
-
+    // pushes data to the redis channel
+    await RedisClient.publish(`Beaver:${api_info.key}`, `[${newLog.created_at}] [${solid_data.level||"INFO"}][${solid_data.label}] | ${solid_data.log}`)
 
     res.send("OK!")
 
