@@ -84,12 +84,15 @@ model paddock_api_key_services {
 /////////////////////
 model beaver_log {
   id         String   @id @default(uuid())
+  label      String
   log        String
+  level      String
   created_at DateTime @default(now())
 
-  paddock_api_key String
-  paddock_api     paddock_api_key @relation("beaver_api_log", fields: [paddock_api_key], references: [key])
+  paddock_api_id String
+  paddock_api    paddock_api_key @relation("beaver_api_log", fields: [paddock_api_id], references: [id])
 
-  @@index([paddock_api_key, created_at(sort: Desc)])
-  @@index(paddock_api_key)
+  @@index([paddock_api_id, created_at(sort: Desc)])
+  @@index(label)
+  @@index(paddock_api_id)
 }
