@@ -34,7 +34,7 @@ export const beaver_create_log:BackendHandler = async (req:BackendRequest, res:R
     })
 
     // pushes data to the redis channel
-    await RedisClient.publish(`Beaver:${api_info.key}`, `[${newLog.created_at}] [${solid_data.level||"INFO"}][${solid_data.label}] | ${solid_data.log}`)
+    await RedisClient.publish(`Beaver:${api_info.id}`, `[${newLog.created_at}] [${newLog.level}][${newLog.label}] ${newLog.log}`)
 
     res.send("OK!")
 
