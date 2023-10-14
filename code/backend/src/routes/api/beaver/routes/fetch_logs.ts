@@ -8,6 +8,7 @@ import {
   endpoint_beaver_log_fetch_schema,
   endpoint_beaver_log_fetch_schema_validator
 } from "@routes/api/beaver/structs/fetch_logs_structs";
+import {Prisma} from "@prisma/client";
 
 
 export const beaver_fetch_logs:BackendHandler = async(req:BackendRequest, res:Response) => {
@@ -22,19 +23,27 @@ export const beaver_fetch_logs:BackendHandler = async(req:BackendRequest, res:Re
       res.status(400).json({message:"Invalid pagination parameters!"})
       return
     }
-    
-    const logs = await DBClient.instance.beaver_log.findMany({
-      where: {
-        paddock_api_id: api_data.id
-      },
-      orderBy: {
-        created_at: "desc"
-      },
-      take: pagination.take,
-      skip: pagination.skip,
-    })
 
-    res.json({logs:logs.reverse()})
+    // inspired by https://stackoverflow.com/a/74334140
+    const [logs, count] = await DBClient.instance.$transaction([
+      DBClient.instance.beaver_log.findMany({
+        where: {
+          paddock_api_id: api_data.id
+        },
+        orderBy: {
+          created_at: "desc"
+        },
+        take: pagination.take,
+        skip: pagination.skip,
+      }),
+      DBClient.instance.beaver_log.count({
+        where: {
+          paddock_api_id: api_data.id
+        }
+      })
+    ])
+
+    res.json({logs:logs.reverse(), total:count})
 
 
   } catch (e) {
