@@ -25,6 +25,7 @@ export const beaver_fetch_logs:BackendHandler = async(req:BackendRequest, res:Re
     }
 
     // inspired by https://stackoverflow.com/a/74334140
+    // prisma docs on $transaction https://www.prisma.io/docs/concepts/components/prisma-client/transactions#the-transaction-api
     const [logs, count] = await DBClient.instance.$transaction([
       DBClient.instance.beaver_log.findMany({
         where: {
