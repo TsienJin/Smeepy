@@ -1,0 +1,21 @@
+---
+import {twMerge} from "tailwind-merge";
+import {ArrowRight} from "lucide-react";
+
+interface Props {
+    link: string;
+    text: string;
+    target?: "_blank"|"_self"|"_parent"|"_top"|string;
+    css?:string
+}
+
+const {link, text, target="_self", css=""} = Astro.props;
+---
+
+
+<a href={link} target={target}>
+    <div class={twMerge("transition-all flex flex-row justify-start items-center align-middle gap-1 md:hover:gap-2 focus:gap-2 font-light text-lg md:text-2xl", css)}>
+        <span class="font-light mb-[6px]">{text}</span>
+        <ArrowRight size={24} />
+    </div>
+</a>
