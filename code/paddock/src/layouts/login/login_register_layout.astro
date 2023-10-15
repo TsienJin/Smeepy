@@ -1,0 +1,25 @@
+---
+import Global from "../global.astro";
+import {ViewTransitions} from "astro:transitions";
+import Banner from "../../components/page_specific/login_register/banner.astro";
+
+const {title} = Astro.props
+
+---
+
+<Global>
+    <title slot="head">{title}</title>
+    <div class=`
+    flex flex-col lg:flex-row-reverse gap-6
+    p-3 md:p-6
+    min-h-screen
+    max-w-full
+    `>
+        <div class=`
+        flex flex-col justify-center items-center w-full max-w-full
+        `>
+            <slot name="main"/>
+        </div>
+        <Banner />
+    </div>
+</Global>
