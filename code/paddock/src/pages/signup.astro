@@ -1,0 +1,10 @@
+---
+import Login_register_layout from "../layouts/login/login_register_layout.astro";
+import Banner from "../components/page_specific/login_register/banner.astro";
+import LinkButton from "../components/primative/links/LinkButton.astro";
+import {ReactRegisterCard} from "../components/react/page_specific/login_register/register_card";
+---
+
+<Login_register_layout title="Sign Up">
+    <ReactRegisterCard slot="main" client:load/>
+</Login_register_layout>
