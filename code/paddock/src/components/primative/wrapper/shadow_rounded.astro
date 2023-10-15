@@ -1,0 +1,23 @@
+
+---
+
+interface Props {
+  small?:boolean,
+  shrink?:boolean
+}
+
+const {small=false, shrink=true} = Astro.props
+
+---
+
+
+
+
+<div class={`
+  bg-shadow
+  ${small?"p-2":"p-6 md:p-[60px]"}
+  ${shrink?"flex-shrink":"flex-shrink-0"}
+  rounded-xl
+`}>
+    <slot />
+</div>
