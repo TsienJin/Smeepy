@@ -1,0 +1,15 @@
+---
+
+import LinkButton from "../../primative/links/LinkButton.astro";
+import Shadow_rounded from "../../primative/wrapper/shadow_rounded.astro";---
+
+<Shadow_rounded>
+  <div class="max-w-prose h-full flex flex-col justify-between items-center">
+    <div class="text-shadow-50 flex flex-col justify-start items-start gap-y-3 md:gap-y-9">
+        <h2 class="text-4xl md:text-6xl">Start your journey with us.</h2>
+        <h2 class="text-2xl md:text-4xl font-light opacity-60 mb-9">Web development and business tools without reinventing the wheel.</h2>
+        <LinkButton text="View repository" link="https://github.com/TsienJin/Smeepy" target="_blank" css=""/>
+    </div>
+    <img draggable="false" class="max-w-[150px] md:max-w-[200px] mt-12 opacity-20" src="/logo/smeepy_full_white.svg" alt=""/>
+  </div>
+</Shadow_rounded>
