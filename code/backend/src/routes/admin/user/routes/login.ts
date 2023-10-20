@@ -37,7 +37,8 @@ export async function login_user(req:Request, res:Response){
 
     const userJwt = generateJwt({user_id:user?.id||""})
 
-    res.setHeader("Authorization", set_auth_header(userJwt))
+    res.setHeader("smeepy", userJwt)
+    // res.cookie("Authorization", userJwt, {httpOnly:true, path:"/"})
     res.status(200).json({message:"Login successful!"})
 
   } catch (e) {
