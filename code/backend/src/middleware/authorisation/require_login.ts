@@ -8,7 +8,7 @@ export default function require_login():BackendHandler{
     try{
       
       // fetch and decode current JWT
-      const token = req.headers.authorization
+      const token = req.headers.smeepy as string
       const usrJwt = decodeJwt(token||"")
 
       // sets JWT attr in current req
