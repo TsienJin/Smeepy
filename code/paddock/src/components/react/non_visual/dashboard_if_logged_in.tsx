@@ -1,6 +1,6 @@
 import {useLocalStorage} from "usehooks-ts";
 import axios from "axios";
-import replaceLocal from "../../../functions/util/replace_local.ts";
+import replaceLocal from "../../../functions/util/redirect_local.ts";
 
 
 export const Dashboard_if_logged_in = () => {

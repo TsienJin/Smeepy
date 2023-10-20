@@ -7,7 +7,7 @@ import {ReactActionButton} from "../../primatives/click/ActionButton.tsx";
 import {useLocalStorage} from "usehooks-ts";
 import {useState} from "react";
 import {handle_create} from "../../../../functions/auth/handle_create.ts";
-import replaceLocal from "../../../../functions/util/replace_local.ts";
+import replaceLocal from "../../../../functions/util/redirect_local.ts";
 
 
 export const ReactRegisterCard = () => {

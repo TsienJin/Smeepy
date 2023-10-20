@@ -1,5 +1,5 @@
 import {useLocalStorage} from "usehooks-ts";
-import replaceLocal from "../../../functions/util/replace_local.ts";
+import replaceLocal from "../../../functions/util/redirect_local.ts";
 import axios from "axios";
 
 
