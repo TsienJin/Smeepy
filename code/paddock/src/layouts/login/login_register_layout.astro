@@ -2,12 +2,14 @@
 import Global from "../global.astro";
 import {ViewTransitions} from "astro:transitions";
 import Banner from "../../components/page_specific/login_register/banner.astro";
+import DashboardIfLoggedIn from "../../components/non_visual/DashboardIfLoggedIn.astro";
 
 const {title} = Astro.props
 
 ---
 
 <Global>
+    <DashboardIfLoggedIn />
     <title slot="head">{title}</title>
     <div class=`
     flex flex-col lg:flex-row-reverse gap-6
