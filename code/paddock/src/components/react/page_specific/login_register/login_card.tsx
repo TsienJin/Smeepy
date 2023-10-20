@@ -4,15 +4,10 @@ import {ReactWireCard} from "../../primatives/wrapper/Wire_Card.tsx";
 import {ReactInputField} from "../../primatives/input/ReactInputField.tsx";
 import {ReactFormWrapper} from "../../primatives/wrapper/FormWrapper.tsx";
 import {ReactActionButton} from "../../primatives/click/ActionButton.tsx";
-import {useEffect, useState} from "react";
-import axios from "axios";
+import {useState} from "react";
 import {handle_login} from "../../../../functions/auth/handle_login.ts";
-<<<<<<< HEAD
-import replaceLocal from "../../../../functions/util/redirect_local.ts";
-=======
-import replaceLocal from "../../../../functions/util/replace_local.ts";
->>>>>>> main
 import {useLocalStorage} from "usehooks-ts";
+import replaceLocal from "../../../../functions/util/replace_local.ts";
 
 
 export const ReactLoginCard = () => {
