@@ -37,7 +37,7 @@ export const create_user:Handler = async (req:Request, res:Response) => {
 
     const jwt = generateJwt({user_id:user.id})
 
-    res.setHeader("Authorization", `${set_auth_header(jwt)}`).send("Boop!")
+    res.setHeader("smeepy", `${jwt}`).json({message:"Account created!"})
   } catch (e) {
     console.log(e)
     res.status(500).send("Something went wrong creating user!")
