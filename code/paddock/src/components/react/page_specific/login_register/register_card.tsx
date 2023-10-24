@@ -38,7 +38,7 @@ export const ReactRegisterCard = () => {
         .then(e=>{
           if(e){
             setToken(e)
-            replaceLocal("/dashboard")
+            replaceLocal("/dash")
           }
         })
         .catch(()=>{setIsLoading(false)})

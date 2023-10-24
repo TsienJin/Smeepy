@@ -28,7 +28,7 @@ export const ReactLoginCard = () => {
           console.log(r)
           if(r){
             setSmeepyToken(r)
-            replaceLocal("/dashboard")
+            replaceLocal("/dash")
           }
         })
         .then(()=>{setWaitingRes(false)})
