@@ -13,7 +13,7 @@ export const Dashboard_if_logged_in = () => {
         smeepy: token
       }
     })
-      .then(()=>{replaceLocal("/dashboard")})
+      .then(()=>{replaceLocal("/dash")})
       .catch(()=>{setToken("")})
   }
 
