@@ -1,0 +1,14 @@
+---
+import Global from "./global.astro";
+import Navbar from "../components/global_components/Navbar.astro";
+---
+
+
+<div class={`
+flex flex-col lg:flex-row justify-start
+`} >
+    <Navbar transition:persist />
+    <main class="w-full">
+        <slot />
+    </main>
+</div>
