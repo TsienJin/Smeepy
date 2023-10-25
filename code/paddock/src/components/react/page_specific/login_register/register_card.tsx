@@ -4,16 +4,16 @@ import {ReactWireCard} from "../../primatives/wrapper/Wire_Card.tsx";
 import {ReactFormWrapper} from "../../primatives/wrapper/FormWrapper.tsx";
 import {ReactInputField} from "../../primatives/input/ReactInputField.tsx";
 import {ReactActionButton} from "../../primatives/click/ActionButton.tsx";
-import {useLocalStorage} from "usehooks-ts";
 import {useState} from "react";
 import {handle_create} from "../../../../functions/auth/handle_create.ts";
 import replaceLocal from "../../../../functions/util/redirect_local.ts";
+import useLocalStorageHook from "../../../../util/react/localstoragehook.ts";
 
 
 export const ReactRegisterCard = () => {
 
 
-  const [token, setToken] = useLocalStorage("smeepy","")
+  const [token, setToken] = useLocalStorageHook("smeepy","")
 
   const [isLoading, setIsLoading] = useState(false)
 

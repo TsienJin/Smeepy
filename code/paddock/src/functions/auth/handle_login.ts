@@ -1,6 +1,4 @@
 import axios from "axios";
-import Cookies from "js-cookie";
-import {useLocalStorage} from "usehooks-ts";
 
 
 export async function handle_login(email:string, password:string):Promise<string|undefined> {
