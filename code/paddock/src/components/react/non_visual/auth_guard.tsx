@@ -1,12 +1,13 @@
-import {useLocalStorage} from "usehooks-ts";
 import replaceLocal from "../../../functions/util/redirect_local.ts";
 import axios from "axios";
+import useLocalStorageHook from "../../../util/react/localstoragehook.ts";
+import {useEffect} from "react";
 
 
 export const ReactAuthGuard = () => {
 
 
-  const [token, setToken] = useLocalStorage("smeepy", "")
+  const [token, setToken] = useLocalStorageHook("smeepy", "")
 
   if(!token){
     replaceLocal("/")
@@ -16,12 +17,14 @@ export const ReactAuthGuard = () => {
         smeepy: token
       }
     })
-      .then()
+      .then(()=>{})
       .catch(()=>{
         setToken("")
         replaceLocal("/")
       })
   }
+
+  useEffect(()=>{console.log(token)},[token])
 
   return(<></>)
 }

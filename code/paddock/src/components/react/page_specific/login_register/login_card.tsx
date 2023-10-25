@@ -4,15 +4,15 @@ import {ReactWireCard} from "../../primatives/wrapper/Wire_Card.tsx";
 import {ReactInputField} from "../../primatives/input/ReactInputField.tsx";
 import {ReactFormWrapper} from "../../primatives/wrapper/FormWrapper.tsx";
 import {ReactActionButton} from "../../primatives/click/ActionButton.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {handle_login} from "../../../../functions/auth/handle_login.ts";
-import {useLocalStorage} from "usehooks-ts";
 import replaceLocal from "../../../../functions/util/replace_local.ts";
+import useLocalStorageHook from "../../../../util/react/localstoragehook.ts";
 
 
 export const ReactLoginCard = () => {
 
-  const [smeepyToken, setSmeepyToken] = useLocalStorage("smeepy", "")
+  const [smeepyToken, setSmeepyToken] = useLocalStorageHook("smeepy", "")
 
   const [waitingRes, setWaitingRes] = useState<boolean>(false)
 
@@ -34,7 +34,6 @@ export const ReactLoginCard = () => {
         .then(()=>{setWaitingRes(false)})
     }
   }
-
 
 
   return(
