@@ -23,8 +23,6 @@ export const ReactAuthGuard = () => {
         replaceLocal("/")
       })
   }
-
-  useEffect(()=>{console.log(token)},[token])
-
+  
   return(<></>)
 }
