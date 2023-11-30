@@ -1,0 +1,11 @@
+
+---
+import Global from "../layouts/global.astro";
+import {Logout_on_load} from "../components/react/non_visual/logout_on_load";
+---
+
+
+<Global>
+    <Logout_on_load client:only="react" />
+    You have been logged out!
+</Global>
