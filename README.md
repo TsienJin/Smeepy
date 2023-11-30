@@ -1,4 +1,5 @@
 # Smeepy
+
 Simple, Lightweight, Platform that provides APIs & Software as a service for individual developers, small teams, and small businesses.
 
 ---
