@@ -25,12 +25,12 @@ export const TableCell = (
     [&>div:last-child]:last:pr-4
     [&>div>div]:first:pl-0
     [&>div>div]:first:border-none
-    border-shadow-100
+    border-shadow-100 border-b
     `, className)}>
       <div className={`
       `}>
         <div className={`
-        border-l border-dashed border-shadow-300
+        border-l border-dashed border-shadow-300 h-full
         px-2 py-2
         `}>
           <div className={twMerge(className)}>
