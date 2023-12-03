@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Folders, Menu, User, X} from "lucide-react";
+import {Folders, LayoutPanelTopIcon, Menu, User, X} from "lucide-react";
 import {ReactNavbarElement} from "../navbar/navbar_element.tsx";
 import {ReactNavbarElementLogout} from "../navbar/navbar_element_logout.tsx";
 
@@ -65,6 +65,9 @@ export const ReactNavbarMobile = () => {
             <div className={`relative h-full overflow-y-scroll`}>
               <div className={`flex flex-col justify-start items-stretch overflow-y-scroll gap-y-2 pb-8`}>
                 <ReactNavbarElement label={"Dashboard"} link={"/dash"} callback={handleRedir}>
+                  <LayoutPanelTopIcon />
+                </ReactNavbarElement>
+                <ReactNavbarElement label={"Projects"} link={"/projects"} callback={handleRedir}>
                   <Folders />
                 </ReactNavbarElement>
               </div>
