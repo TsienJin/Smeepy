@@ -1,0 +1,10 @@
+---
+import PageHeaderMain from "../../global_components/headers/PageHeaderMain.astro";
+import {ProjectMain} from "../../react/page_specific/projects/ProjectMain";
+---
+
+
+<div class="w-full h-full flex flex-col gap-y-3">
+    <PageHeaderMain header="Projects" />
+    <ProjectMain client:load/>
+</div>
