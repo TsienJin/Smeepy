@@ -22,7 +22,7 @@ local-backend:
 
 .PHONY:local-paddock
 local-paddock:
-	@cd paddock && npm run dev
+	-@cd paddock && npm run dev
 
 
 # Starts DB instances
