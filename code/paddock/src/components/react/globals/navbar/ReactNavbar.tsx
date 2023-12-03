@@ -1,5 +1,5 @@
 import {ReactNavbarElement} from "./navbar_element.tsx";
-import {Folders, User} from "lucide-react";
+import {Folders, LayoutPanelTopIcon, User} from "lucide-react";
 import {ReactNavbarElementLogout} from "./navbar_element_logout.tsx";
 import {useState} from "react";
 
@@ -30,9 +30,14 @@ export const ReactNavbar = () => {
         nav-items
         flex flex-col justify-between items-center h-full
         `}>
-          <ReactNavbarElement label={"Dashboard"} link={"/dash"} expanded={expanded}>
-            <Folders />
-          </ReactNavbarElement>
+          <div className={`flex flex-col justify-center items-center gap-y-2`}>
+            <ReactNavbarElement label={"Dashboard"} link={"/dash"} expanded={expanded}>
+              <LayoutPanelTopIcon />
+            </ReactNavbarElement>
+            <ReactNavbarElement label={"Projects"} link={"/projects"} expanded={expanded}>
+              <Folders />
+            </ReactNavbarElement>
+          </div>
           <div className={`flex flex-col justify-center items-start gap-y-2 w-full`}>
             <ReactNavbarElementLogout />
             <ReactNavbarElement label={"Account"} link={"/account"} expanded={expanded}>
