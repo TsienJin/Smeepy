@@ -65,8 +65,10 @@ export const ProjectMain = () => {
               <TableRow key={proj.id} className={`md:hover:bg-shadow-50 transition-colors`}>
                 <TableCell>
                   <a href={`/projects/${proj.id}`}>
-                    <span className={`font-semibold text-lg`}>{proj.name}</span>
-                    <p>{proj.description}</p>
+                    <div>
+                      <span className={`font-semibold text-lg w-full`}>{proj.name}</span>
+                      <p>{proj.description}</p>
+                    </div>
                   </a>
                 </TableCell>
                 <TableCell className={`whitespace-nowrap`}>{proj.paddock_user_creator.first_name} {proj.paddock_user_creator.last_name}</TableCell>
