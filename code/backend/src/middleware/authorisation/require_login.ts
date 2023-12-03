@@ -4,15 +4,21 @@ import {BackendHandler, BackendRequest} from "@src/globals/types_and_all.types";
 
 
 export default function require_login():BackendHandler{
-  return async(req:BackendRequest, res:Response, next:NextFunction) => {
+  return async(req:Request, res:Response, next:NextFunction) => {
     try{
       
       // fetch and decode current JWT
-      const token = req.headers.smeepy as string
-      const usrJwt = decodeJwt(token||"")
+      const {smeepy} = req.headers
+
+      console.log(smeepy)
+
+      //@ts-ignore
+      const usrJwt = decodeJwt(smeepy || "")
 
       // sets JWT attr in current req
-      req.jwt = usrJwt
+      // @ts-ignore
+      req['jwt'] = usrJwt
+
 
       // regenerate JWT to 'reset' the expiry on JWT token
       const newJwt = generateJwt({user_id:usrJwt.user_id})
