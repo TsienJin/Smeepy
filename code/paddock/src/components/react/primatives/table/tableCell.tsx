@@ -31,9 +31,8 @@ export const TableCell = (
       `}>
         <div className={`
         border-l border-dashed border-shadow-300 h-full
-        px-2 py-2
         `}>
-          <div className={twMerge(className)}>
+          <div className={twMerge(className, `px-2 py-2 h-full`)}>
             {children}
           </div>
         </div>
