@@ -3,12 +3,13 @@
 import Global from "../../layouts/global.astro";
 import AuthGuard from "../../components/non_visual/AuthGuard.astro";
 import Dashboard from "../../layouts/dashboard.astro";
+import Projects from "../../components/page_specific/dash/Projects.astro";
 ---
 
 
 <Global>
     <AuthGuard />
     <Dashboard>
-        <p class="h-[200dvh]">Dashboard!</p>
+        <Projects />
     </Dashboard>
 </Global>
