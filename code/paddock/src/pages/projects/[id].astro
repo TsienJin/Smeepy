@@ -1,15 +1,18 @@
-
 ---
 import Global from "../../layouts/global.astro";
 import AuthGuard from "../../components/non_visual/AuthGuard.astro";
 import Dashboard from "../../layouts/dashboard.astro";
 import Projects from "../../components/page_specific/dash/Projects.astro";
+import PageHeaderMain from "../../components/global_components/headers/PageHeaderMain.astro";
+
+const {id} = Astro.params
+
 ---
 
 
 <Global>
     <AuthGuard />
     <Dashboard>
-        <Projects />
+        <PageHeaderMain header={`${id}`} />
     </Dashboard>
 </Global>

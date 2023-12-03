@@ -11,7 +11,7 @@ import assert_not_null from "@src/utils/assert_not_null";
 import {IJwt} from "@src/utils/jwt.types";
 
 
-export const create_project:BackendHandler = async (req:BackendRequest, res:Response) => {
+export const create_project:BackendHandler = async (req:Request, res:Response) => {
 
   try {
 
@@ -23,7 +23,8 @@ export const create_project:BackendHandler = async (req:BackendRequest, res:Resp
     }
 
     // fetch user information
-    const userJwt = assert_not_null<IJwt>(req.jwt)
+    //@ts-ignore
+    const userJwt = decodeJwt(req.headers?.smeepy)
 
     // create project with provided params
     const proj = await DBClient.instance.paddock_project.create({
