@@ -27,6 +27,7 @@ export const AuxiliaryButton = (
   return(
     <button onClick={handleClick} className={twMerge(`w-fit`, outerClassName)}>
       <div className={twMerge(`
+      cursor-pointer
       flex flex-row justify-center items-center 
       gap-x-2 px-3 py-1 
       transition-colors
