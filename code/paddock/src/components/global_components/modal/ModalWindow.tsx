@@ -45,7 +45,7 @@ export const ModalWindow = (
     flex flex-col justify-center items-center
     transition-opacity
     delay-200
-    ${open?"opacity-100":"opacity-0"}
+    ${open?"opacity-100":"opacity-0 pointer-events-none"}
     `}>
       <div className={`
       relative
