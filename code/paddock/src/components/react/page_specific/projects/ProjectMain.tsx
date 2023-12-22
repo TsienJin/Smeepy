@@ -1,7 +1,7 @@
 import {AuxiliaryButton} from "../../primatives/click/AuxiliaryButton/AuxiliaryButton.tsx";
 import {
-  ArrowDownAZIcon,
-  FolderPlus,
+  ArrowDownAZIcon, ExternalLink, ExternalLinkIcon,
+  FolderPlus, Link,
   RefreshCwIcon,
   SlidersHorizontal
 } from "lucide-react";
@@ -12,7 +12,7 @@ import {Table} from "../../primatives/table/Table.tsx";
 import {TableRow} from "../../primatives/table/tableRow.tsx";
 import {TableCell} from "../../primatives/table/tableCell.tsx";
 import {TableBody} from "../../primatives/table/tableBody.tsx";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Caller} from "../../../../util/backend_calls/caller.ts";
 import {projects_endpoints} from "../../../../backend_schema/admin/projects.ts";
 import useLocalStorageHook from "../../../../util/react/localstoragehook.ts";
@@ -57,7 +57,7 @@ export const ProjectMain = () => {
           <AuxiliaryButton icon={<ArrowDownAZIcon size={16}/>}>Sort</AuxiliaryButton>
           <AuxiliaryButton icon={<RefreshCwIcon size={16}/>} action={refreshProjects}>Refresh</AuxiliaryButton>
         </AuxiliaryButtonContainer>
-        <Table>
+        <Table loading={loading}>
           <thead>
             <HeaderRow>
               <HeaderCell>Project</HeaderCell>
@@ -71,7 +71,7 @@ export const ProjectMain = () => {
                   <TableCell>
                     <a href={`/projects/${proj.id}`}>
                       <div>
-                        <span className={`font-semibold text-lg w-full`}>{proj.name}</span>
+                        <span className={`font-semibold text-lg w-full flex flex-row justify-start items-center gap-1`}>{proj.name}</span>
                         <p>{proj.description}</p>
                       </div>
                     </a>

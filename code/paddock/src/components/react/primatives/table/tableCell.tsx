@@ -21,8 +21,8 @@ export const TableCell = (
     <td className={twMerge(`
     text-shadow text-normal font-light text-left
     px-2 py-2
-    [&>div:first-child]:first:pl-4
-    [&>div:last-child]:last:pr-4
+    [&>div:first-child]:first:pl-2
+    [&>div:last-child]:last:pr-2
     [&>div>div]:first:pl-0
     [&>div>div]:first:border-none
     border-shadow-100 border-b
