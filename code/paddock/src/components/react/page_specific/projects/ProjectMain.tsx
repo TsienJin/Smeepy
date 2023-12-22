@@ -17,10 +17,15 @@ import {Caller} from "../../../../util/backend_calls/caller.ts";
 import {projects_endpoints} from "../../../../backend_schema/admin/projects.ts";
 import useLocalStorageHook from "../../../../util/react/localstoragehook.ts";
 import type {Project_All_Type, Project_Type} from "../../../../backend_schema/admin/project_schema";
-import {ModalWindow} from "../../../global_components/modal/ModalWindow.tsx";
+import {ModalWindow} from "../../modal/ModalWindow.tsx";
+import {ProjectCreateModal} from "./ProjectCreateModal.tsx";
+import replaceLocal from "../../../../functions/util/replace_local.ts";
 
 
 export const ProjectMain = () => {
+
+  const [modalChild, setModalChild] = useState<any>(undefined)
+  const [modalCloseSem, setModalCloseSem] = useState<any>("")
 
   const [smeepyToken, _] = useLocalStorageHook("smeepy")
   const [loading, setLoading] = useState<boolean>(true)
@@ -34,9 +39,25 @@ export const ProjectMain = () => {
     }
   }
 
+  const createProject = () => {
+
+    const created = (new_id:string) => {
+      setModalCloseSem(new_id)
+      replaceLocal(`/projects/${new_id}`)
+    }
+
+    setModalChild(<ProjectCreateModal onDone={created}/>)
+  }
+
   const refreshProjects = () => {
     setLoading(true)
     updateProjects().catch(console.error)
+  }
+
+  const handleModalClose = () => {
+    setTimeout(()=>{
+      setModalChild(undefined)
+    }, 200)
   }
 
   useEffect(()=>{
@@ -45,14 +66,14 @@ export const ProjectMain = () => {
 
   return(
     <>
-      <ModalWindow>
-        
+      <ModalWindow open={modalChild!==undefined} onClose={handleModalClose} closeSemaphore={modalCloseSem}>
+        {modalChild}
       </ModalWindow>
       <div className={`
       w-full flex flex-col
       `}>
         <AuxiliaryButtonContainer>
-          <AuxiliaryButton icon={<FolderPlus size={16}/>}>Create Project</AuxiliaryButton>
+          <AuxiliaryButton icon={<FolderPlus size={16}/>} action={createProject}>Create Project</AuxiliaryButton>
           <AuxiliaryButton icon={<SlidersHorizontal size={16}/>}>Filter</AuxiliaryButton>
           <AuxiliaryButton icon={<ArrowDownAZIcon size={16}/>}>Sort</AuxiliaryButton>
           <AuxiliaryButton icon={<RefreshCwIcon size={16}/>} action={refreshProjects}>Refresh</AuxiliaryButton>
