@@ -17,6 +17,7 @@ import {Caller} from "../../../../util/backend_calls/caller.ts";
 import {projects_endpoints} from "../../../../backend_schema/admin/projects.ts";
 import useLocalStorageHook from "../../../../util/react/localstoragehook.ts";
 import type {Project_All_Type, Project_Type} from "../../../../backend_schema/admin/project_schema";
+import {ModalWindow} from "../../../global_components/modal/ModalWindow.tsx";
 
 
 export const ProjectMain = () => {
@@ -43,40 +44,45 @@ export const ProjectMain = () => {
   },[])
 
   return(
-    <div className={`
-    w-full flex flex-col
-    `}>
-      <AuxiliaryButtonContainer>
-        <AuxiliaryButton icon={<FolderPlus size={16}/>}>Create Project</AuxiliaryButton>
-        <AuxiliaryButton icon={<SlidersHorizontal size={16}/>}>Filter</AuxiliaryButton>
-        <AuxiliaryButton icon={<ArrowDownAZIcon size={16}/>}>Sort</AuxiliaryButton>
-        <AuxiliaryButton icon={<RefreshCwIcon size={16}/>} action={refreshProjects}>Refresh</AuxiliaryButton>
-      </AuxiliaryButtonContainer>
-      <Table>
-        <thead>
-          <HeaderRow>
-            <HeaderCell>Project</HeaderCell>
-            <HeaderCell>Owner</HeaderCell>
-          </HeaderRow>
-        </thead>
-        <TableBody>
-          {projects.map(proj => {
-            return(
-              <TableRow key={proj.id} className={`md:hover:bg-shadow-50 transition-colors`}>
-                <TableCell>
-                  <a href={`/projects/${proj.id}`}>
-                    <div>
-                      <span className={`font-semibold text-lg w-full`}>{proj.name}</span>
-                      <p>{proj.description}</p>
-                    </div>
-                  </a>
-                </TableCell>
-                <TableCell className={`whitespace-nowrap`}>{proj.paddock_user_creator.first_name} {proj.paddock_user_creator.last_name}</TableCell>
-              </TableRow>
-            )
-          })}
-        </TableBody>
-      </Table>
-    </div>
+    <>
+      <ModalWindow>
+        
+      </ModalWindow>
+      <div className={`
+      w-full flex flex-col
+      `}>
+        <AuxiliaryButtonContainer>
+          <AuxiliaryButton icon={<FolderPlus size={16}/>}>Create Project</AuxiliaryButton>
+          <AuxiliaryButton icon={<SlidersHorizontal size={16}/>}>Filter</AuxiliaryButton>
+          <AuxiliaryButton icon={<ArrowDownAZIcon size={16}/>}>Sort</AuxiliaryButton>
+          <AuxiliaryButton icon={<RefreshCwIcon size={16}/>} action={refreshProjects}>Refresh</AuxiliaryButton>
+        </AuxiliaryButtonContainer>
+        <Table>
+          <thead>
+            <HeaderRow>
+              <HeaderCell>Project</HeaderCell>
+              <HeaderCell>Owner</HeaderCell>
+            </HeaderRow>
+          </thead>
+          <TableBody>
+            {projects.map(proj => {
+              return(
+                <TableRow key={proj.id} className={`md:hover:bg-shadow-50 transition-colors`}>
+                  <TableCell>
+                    <a href={`/projects/${proj.id}`}>
+                      <div>
+                        <span className={`font-semibold text-lg w-full`}>{proj.name}</span>
+                        <p>{proj.description}</p>
+                      </div>
+                    </a>
+                  </TableCell>
+                  <TableCell className={`whitespace-nowrap`}>{proj.paddock_user_creator.first_name} {proj.paddock_user_creator.last_name}</TableCell>
+                </TableRow>
+              )
+            })}
+          </TableBody>
+        </Table>
+      </div>
+    </>
   )
 }
