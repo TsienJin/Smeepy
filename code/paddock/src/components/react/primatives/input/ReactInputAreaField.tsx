@@ -1,20 +1,20 @@
 import {useEffect, useRef, useState, type ChangeEvent} from "react";
+import {twMerge} from "tailwind-merge";
 
 
-export const ReactInputField = (
+export const ReactInputAreaField = (
   {
     label = "Label",
     defaultVal = "",
     isError = false,
-    type = "text",
-    hoist = () => {
-    }
+    hoist = () => {},
+    textAreaClass=""
   }: {
     label?: string,
     defaultVal?: string,
     isError?: boolean,
-    type?: "text" | "password"
     hoist?: any
+    textAreaClass?:string
   }
 ) => {
 
@@ -22,7 +22,7 @@ export const ReactInputField = (
   const ref = useRef(null)
   const [val, setVal] = useState<string>(defaultVal)
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setVal(e.target.value)
   }
 
@@ -34,15 +34,17 @@ export const ReactInputField = (
   return(
     <div className={`flex flex-col justify-start items-start gap-y-1 max-w-full lg:w-[45ch] grow`}>
       <label htmlFor={`input_id_${label}`} className={`text-shadow-600`}>{label}</label>
-      <input id={`input_id_${label}`} ref={ref} onChange={handleChange} defaultValue={defaultVal} type={type}
-      className={`
+      <textarea id={`input_id_${label}`} ref={ref} onChange={handleChange} defaultValue={defaultVal}
+      className={twMerge(`
       px-4 py-3
       rounded
       w-full
       max-w-full
+      min-h-[90px]
+      max-h-[240px]
       text-shadow
       border border-shadow-300
-      `}/>
+      `, textAreaClass)}/>
     </div>
   )
 }
