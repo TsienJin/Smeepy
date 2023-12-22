@@ -19,3 +19,12 @@ export const endpoint_project_create_api_key_schema_validator = object({
   api_description: string()
 })
 export type endpoint_project_create_api_key_schema = InferType<typeof endpoint_project_create_api_key_schema_validator>
+
+
+/**
+ * Endpoint schema for GETTING PADDOCK PROJECT BY ID
+ */
+export const endpoint_project_get_by_id_validator = object({
+  id: string().required()
+})
+export type endpoint_project_get_by_id_schema = InferType<typeof endpoint_project_get_by_id_validator>
