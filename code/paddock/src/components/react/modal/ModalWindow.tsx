@@ -5,17 +5,19 @@ import {CrossIcon, XIcon} from "lucide-react";
 export const ModalWindow = (
   {
     children="",
+    open=false,
     onClose=()=>{},
     closeSemaphore=""
   }:{
     children?:any
+    open?:boolean
     onClose?:any
     closeSemaphore?:any
   }
 ) => {
 
   const [semLatch, setSemLatch] = useState<any>(closeSemaphore)
-  const [open, setOpen] = useState<boolean>(false)
+  const [isOpen, setOpen] = useState<boolean>(open)
 
   const handleClose = () => {
     setOpen(false)
@@ -23,12 +25,8 @@ export const ModalWindow = (
   }
 
   useEffect(() => {
-    if(children){
-      setOpen(true)
-    } else {
-      setOpen(false)
-    }
-  }, [children]);
+    setOpen(open)
+  }, [open])
 
   useEffect(() => {
     if(closeSemaphore !== semLatch){
@@ -39,19 +37,20 @@ export const ModalWindow = (
 
   return(
     <dialog className={`
-    absolute top-0 left-0 right-0 bottom-0 z-50
+    fixed top-0 left-0 right-0 bottom-0 z-50
+    max-w-[100dvw]
     w-[100dvw] h-[100dvh] bg-shadow-500 bg-opacity-25 backdrop-blur
     p-3 lg:p-3
-    flex flex-col justify-center items-center
+    flex flex-col justify-start md:justify-center items-center
     transition-opacity
-    delay-200
-    ${open?"opacity-100":"opacity-0 pointer-events-none"}
+    duration-200
+    ${isOpen?"opacity-100":"opacity-0 pointer-events-none"}
     `}>
       <div className={`
       relative
-      bg-white p-3 rounded shadow
+      bg-white p-6 rounded shadow
       min-w-full
-      min-h-full
+      min-h-fit
       lg:min-w-[33dvw]
       lg:min-h-[33dvh]
       flex flex-col justify-center items-center
