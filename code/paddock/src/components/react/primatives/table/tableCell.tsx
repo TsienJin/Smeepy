@@ -20,7 +20,7 @@ export const TableCell = (
   return(
     <td className={twMerge(`
     text-shadow text-normal font-light text-left
-    px-2 py-2
+    px-2 py-2 h-full
     [&>div:first-child]:first:pl-2
     [&>div:last-child]:last:pr-2
     [&>div>div]:first:pl-0
@@ -28,11 +28,12 @@ export const TableCell = (
     border-shadow-100 border-b
     `, className)}>
       <div className={`
+      h-full
       `}>
         <div className={`
         border-l border-dashed border-shadow-300 h-full
         `}>
-          <div className={twMerge(className, `px-2 py-2 h-full`)}>
+          <div className={twMerge(className, `px-2 py-2 h-full max-w-prose`)}>
             {children}
           </div>
         </div>
