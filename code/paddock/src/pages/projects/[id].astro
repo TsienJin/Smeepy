@@ -4,6 +4,7 @@ import AuthGuard from "../../components/non_visual/AuthGuard.astro";
 import Dashboard from "../../layouts/dashboard.astro";
 import Projects from "../../components/page_specific/dash/Projects.astro";
 import PageHeaderMain from "../../components/global_components/headers/PageHeaderMain.astro";
+import {ProjectMainPage} from "../../components/react/page_specific/projects/project/ProjectMainPage";
 
 const {id} = Astro.params
 
@@ -13,6 +14,8 @@ const {id} = Astro.params
 <Global>
     <AuthGuard />
     <Dashboard>
-        <PageHeaderMain header={`${id}`} />
+        <!--<PageHeaderMain header={`${id}`} />-->
+        <ProjectMainPage client:only="react" id={id}/>
     </Dashboard>
+
 </Global>
