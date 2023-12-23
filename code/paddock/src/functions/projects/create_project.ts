@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-export default async function create_project(name:string, description:string, smeepy_token:string) {
+export default async function create_project(name:string, description:string, smeepy_token:string):Promise<string> {
 
   const res = await axios.post(`${import.meta.env.PUBLIC_BACKEND_URL}/admin/project/create`,
     {
