@@ -28,3 +28,11 @@ export const endpoint_project_get_by_id_validator = object({
   id: string().required()
 })
 export type endpoint_project_get_by_id_schema = InferType<typeof endpoint_project_get_by_id_validator>
+
+/**
+ * Endpoint schema for GETTING PADDOCK PROJECT DASHBOARD INFO BY ID
+ */
+export const endpoint_project_dashboard_get_by_id_validator = object({
+  id: string().required()
+})
+export type endpoint_project_dashboard_get_by_id_schema = InferType<typeof endpoint_project_dashboard_get_by_id_validator>
