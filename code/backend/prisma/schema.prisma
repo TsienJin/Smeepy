@@ -45,7 +45,7 @@ model paddock_project {
 model paddock_api_key {
   id          String  @id @default(uuid())
   key         String  @unique @default(uuid())
-  label       String
+  label       String // Name of the API key
   description String?
 
   created_at DateTime @default(now())
@@ -63,6 +63,7 @@ model paddock_api_key {
   beaver_logs beaver_log[] @relation("beaver_api_log")
 
   @@index([id, key])
+  @@index(paddock_project_id)
   @@index(key)
 }
 
