@@ -19,7 +19,7 @@ export const TabSection = (
     w-full
     ${current===label?"":"opacity-0 h-0"}
     `}>
-      <span>{label}</span>
+      <span>{children || label}</span>
     </section>
   )
 }
