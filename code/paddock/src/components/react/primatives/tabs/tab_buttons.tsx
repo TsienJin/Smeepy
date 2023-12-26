@@ -34,7 +34,7 @@ export const TabButton = (
       ${label==current?"":"bg-shadow-50"}     
       `}>
         <span className={`
-        transition-all
+        transition-all whitespace-nowrap
         ${label==current?"":"opacity-50"}     
         `}>{label}</span>
         <div className={`
