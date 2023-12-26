@@ -27,7 +27,7 @@ export const get_project_by_id:Handler = async (req:Request, res:Response) => {
     }
 
     // Ensures that product ID fetched was created by the same user.
-    const project = await DBClient.instance.paddock_project.findFirst({
+    const project_promise = DBClient.instance.paddock_project.findFirst({
       select: {
         id: true,
         name: true,
@@ -49,8 +49,34 @@ export const get_project_by_id:Handler = async (req:Request, res:Response) => {
       }
     })
 
+    // get number of API keys linked to the project
+    const api_key_promise = DBClient.instance.paddock_api_key.aggregate({
+      _count: true,
+      where:{
+        paddock_project_id: {
+          equals: params.id
+        }
+      }
+    })
 
-    res.status(200).json({message: "ok!", project:project})
+    // TODO count number of credits remaining for the project
+
+
+    // Run all promises in parallel
+    const [project, api_key] = await Promise.all([
+      project_promise,
+      api_key_promise
+    ])
+
+
+    res.status(200).json({
+      message: "ok!",
+        project: {
+          ...project,
+          num_keys:api_key._count,
+          credits:0
+      },
+    })
 
 
   } catch (e) {
