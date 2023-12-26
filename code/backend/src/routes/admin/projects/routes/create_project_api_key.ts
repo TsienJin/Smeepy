@@ -35,7 +35,8 @@ export const create_project_api_key:Handler = async(req:Request, res:Response)=>
       select: {
         id: true,
         key: true,
-        paddock_api_key_services:true
+        label: true,
+        description: true
       }
     })
 
