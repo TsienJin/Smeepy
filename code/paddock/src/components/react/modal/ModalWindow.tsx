@@ -47,12 +47,12 @@ export const ModalWindow = (
     ${isOpen?"opacity-100":"opacity-0 pointer-events-none"}
     `}>
       <div className={`
+      transition-all
       relative
-      bg-white p-6 rounded shadow
+      bg-white p-6 rounded-lg shadow
       min-w-full
       min-h-fit
       lg:min-w-[33dvw]
-      lg:min-h-[33dvh]
       flex flex-col justify-center items-center
       `}>
         <button onClick={handleClose} tabIndex={0} className={`transition opacity-50 md:hover:opacity-80 absolute top-1 right-1`} >
