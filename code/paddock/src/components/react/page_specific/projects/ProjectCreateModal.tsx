@@ -39,7 +39,6 @@ export const ProjectCreateModal = (
     <div className={`
     w-full h-full 
     flex flex-col
-    gap-y-4
     `}>
       <ModalHeader>
         Create Project

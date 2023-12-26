@@ -37,7 +37,7 @@ export const ReactLoginCard = () => {
 
 
   return(
-    <ReactWireCard>
+    <ReactWireCard className={`w-[50ch]`}>
       <div className={`
       flex flex-col justify-start items-start gap-y-10
       `}>
