@@ -7,10 +7,13 @@ import type {TabLabels} from "../../../primatives/tabs/tab_labels.types.ts";
 import {TabButton} from "../../../primatives/tabs/tab_buttons.tsx";
 import {TabButtonContainer} from "../../../primatives/tabs/tab_button_container.tsx";
 import {TabSection} from "../../../primatives/tabs/tab_section.tsx";
+import {ProjectDashboard} from "./dashboard/ProjectDashboard.tsx";
+import {APIKeysTab} from "./api_keys/APIKeysTab.tsx";
 
 
-
-
+/**
+ * Component for displaying the dashboard for each individual project.
+ */
 export const ProjectMainPage = (
   {
     id
@@ -22,20 +25,29 @@ export const ProjectMainPage = (
   const [token, _] = useLocalStorageHook("smeepy")
   const [proj, setProj] = useState<Project|undefined>(undefined)
 
-  const tabs:TabLabels = {
-    Dashboard: "Dashboard",
-    Activity: "Activity",
-    Credits: "Credits",
-    Settings: "Settings",
-    S1: "SomethingElseThatIsLong1",
-    S2: "SomethingElseThatIsLong2",
-    S3: "SomethingElseThatIsLong3",
+  /**
+   * Method to update the overall dashboard information
+   * 1. Title
+   * 2. Description
+   * 3. Summary content
+   */
+  const fetchProj = () => {
+    get_by_id(id, token).then(setProj).catch(console.error)
   }
 
-  const [curTab, setCurTab] = useState<string>(tabs.Dashboard)
+  const tabs:TabLabels = {
+    Dashboard: "Dashboard",
+    APIKeys: "API Keys",
+    Activity: "Activity",
+    Credits: "Credits",
+    Collaborators: "Collaborators",
+    Settings: "Settings",
+  }
+
+  const [curTab, setCurTab] = useState<string>(tabs.APIKeys)
 
   useEffect(() => {
-    get_by_id(id, token).then(setProj).catch(console.error)
+    fetchProj()
   }, []);
 
   if(!proj){
@@ -69,8 +81,8 @@ export const ProjectMainPage = (
         border-t border-l-0 md:border-t-0 md:border-l 
         `}>
           <span className={`text-lg font-medium text-shadow mb-4`}>Summary</span>
-          <ProjectSummaryPair label={"API Keys"}>4</ProjectSummaryPair>
-          <ProjectSummaryPair label={"Credits"}>54576</ProjectSummaryPair>
+          <ProjectSummaryPair label={proj.num_keys===1?"API Key":"API Keys"}>{`${proj.num_keys||0}`}</ProjectSummaryPair>
+          <ProjectSummaryPair label={proj.credits===1?"Credit":"Credits"}>{`${proj.credits||0}`}</ProjectSummaryPair>
         </div>
       </div>
       <TabButtonContainer>
@@ -80,9 +92,15 @@ export const ProjectMainPage = (
           )
         })}
       </TabButtonContainer>
-      <TabSection label={tabs.Dashboard} current={curTab}></TabSection>
+      <TabSection label={tabs.Dashboard} current={curTab}>
+        <ProjectDashboard id={id} updateDashboard={fetchProj}/>
+      </TabSection>
+      <TabSection label={tabs.APIKeys} current={curTab}>
+        <APIKeysTab id={id} updateDashboard={fetchProj}/>
+      </TabSection>
       <TabSection label={tabs.Activity} current={curTab}></TabSection>
       <TabSection label={tabs.Credits} current={curTab}></TabSection>
+      <TabSection label={tabs.Collaborators} current={curTab}></TabSection>
       <TabSection label={tabs.Settings} current={curTab}></TabSection>
     </>
   )
