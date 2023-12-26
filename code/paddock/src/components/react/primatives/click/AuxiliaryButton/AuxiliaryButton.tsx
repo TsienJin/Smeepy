@@ -20,7 +20,6 @@ export const AuxiliaryButton = (
 
   const handleClick = () => {
     action()
-    console.log(`[${children}] Button Pressed!`)
   }
 
 
