@@ -6,14 +6,13 @@ import {ReactActionButton} from "../../primatives/click/ActionButton.tsx";
 import {useState} from "react";
 import useLocalStorageHook from "../../../../util/react/localstoragehook.ts";
 import create_project from "../../../../functions/projects/create_project.ts";
+import type {ModalInterface} from "../../modal/modal.types.ts";
 
 
 export const ProjectCreateModal = (
   {
     onDone=()=>{}
-  }:{
-    onDone?:any
-  }
+  }:ModalInterface
 ) => {
 
   const [name, setName] = useState<string>("")
