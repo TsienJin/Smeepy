@@ -6,12 +6,12 @@ import {
   SlidersHorizontal
 } from "lucide-react";
 import {AuxiliaryButtonContainer} from "../../primatives/click/AuxiliaryButton/AuxilaryButtonContainer.tsx";
-import {HeaderRow} from "../../primatives/table/headerRow.tsx";
-import {HeaderCell} from "../../primatives/table/headerCell.tsx";
-import {Table} from "../../primatives/table/Table.tsx";
-import {TableRow} from "../../primatives/table/tableRow.tsx";
-import {TableCell} from "../../primatives/table/tableCell.tsx";
-import {TableBody} from "../../primatives/table/tableBody.tsx";
+import {HeaderRow} from "../../primatives/table/primary/headerRow.tsx";
+import {HeaderCell} from "../../primatives/table/primary/headerCell.tsx";
+import {Table} from "../../primatives/table/primary/Table.tsx";
+import {TableRow} from "../../primatives/table/primary/tableRow.tsx";
+import {TableCell} from "../../primatives/table/primary/tableCell.tsx";
+import {TableBody} from "../../primatives/table/primary/tableBody.tsx";
 import React, {useEffect, useState} from "react";
 import {Caller} from "../../../../util/backend_calls/caller.ts";
 import {projects_endpoints} from "../../../../backend_schema/admin/projects.ts";
@@ -22,6 +22,9 @@ import {ProjectCreateModal} from "./ProjectCreateModal.tsx";
 import replaceLocal from "../../../../functions/util/replace_local.ts";
 
 
+/**
+ * Component for rendering the table overviewing the different projects.
+ */
 export const ProjectMain = () => {
 
   const [modalChild, setModalChild] = useState<any>(undefined)
