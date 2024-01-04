@@ -41,7 +41,7 @@ const NewlyCreatedAPIKeyModal = (
         <ReactSensitiveCopyField label={"Key"} value={api_key.key}/>
         <ReactActionButton text={"Copy and close"} action={copyAndClose}/>
       </ReactFormWrapper>
-      <span className={`font-light text-opacity-70 text-sm text-rust max-w-prose mt-1`}>
+      <span className={`font-light text-opacity-70 text-sm text-shadow max-w-prose mt-1`}>
           You will not be able to retrieve this API key again.
       </span>
     </>
@@ -86,7 +86,7 @@ export const NewAPIKeyModal = (
         Create New API Key
       </ModalHeader>
       <ReactFormWrapper>
-        <ReactInputField label={"Name"} hoist={setName}/>
+        <ReactInputField focus={true} label={"Name"} hoist={setName}/>
         <ReactInputAreaField label={"Description"} hoist={setDescription}/>
         <ReactActionButton text={"Create API Key"} action={createApiKey} loading={isLoading}/>
       </ReactFormWrapper>
