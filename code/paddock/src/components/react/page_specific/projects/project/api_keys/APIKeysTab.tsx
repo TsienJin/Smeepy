@@ -59,8 +59,9 @@ export const APIKeysTab = (
             <AuxiliaryButton icon={<KeyRound size={16}/>} action={handleCreateAPIKey}>New API Key</AuxiliaryButton>
             <AuxiliaryButton icon={<SlidersHorizontal size={16}/>}>Filter</AuxiliaryButton>
             <AuxiliaryButton icon={<ArrowDownAZIcon size={16}/>}>Sort</AuxiliaryButton>
-            <AuxiliaryButton icon={<RefreshCwIcon size={16}/>}>Refresh</AuxiliaryButton>
+            <AuxiliaryButton icon={<RefreshCwIcon size={16} className={refreshingList?`animate-spin`:""}/>} action={fetchApiKeys}>Refresh</AuxiliaryButton>
           </AuxiliaryButtonContainer>
+          <APIKeysTable keys={apiKeys} refreshApiKeys={fetchApiKeys}/>
         </div>
       </div>
     </>
