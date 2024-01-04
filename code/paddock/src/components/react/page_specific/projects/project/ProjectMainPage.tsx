@@ -9,6 +9,7 @@ import {TabButtonContainer} from "../../../primatives/tabs/tab_button_container.
 import {TabSection} from "../../../primatives/tabs/tab_section.tsx";
 import {ProjectDashboard} from "./dashboard/ProjectDashboard.tsx";
 import {APIKeysTab} from "./api_keys/APIKeysTab.tsx";
+import client_refresh from "../../../../../util/react/client_refresh.ts";
 
 
 /**
@@ -25,6 +26,7 @@ export const ProjectMainPage = (
   const [token, _] = useLocalStorageHook("smeepy")
   const [proj, setProj] = useState<Project|undefined>(undefined)
 
+
   /**
    * Method to update the overall dashboard information
    * 1. Title
@@ -33,6 +35,7 @@ export const ProjectMainPage = (
    */
   const fetchProj = () => {
     get_by_id(id, token).then(setProj).catch(console.error)
+
   }
 
   const tabs:TabLabels = {
@@ -46,12 +49,23 @@ export const ProjectMainPage = (
 
   const [curTab, setCurTab] = useState<string>(tabs.APIKeys)
 
+  const callbackFunction = (e:KeyboardEvent) => {
+    console.log(e)
+    e.preventDefault()
+  }
+
   useEffect(() => {
     fetchProj()
+
+    window.addEventListener("keydown", client_refresh(fetchProj), false)
+
+    return(()=>{
+      window.removeEventListener("keydown", client_refresh(fetchProj), false)
+    })
   }, []);
 
   if(!proj){
-    return "loading..."
+    return <></>
   }
 
   return(
