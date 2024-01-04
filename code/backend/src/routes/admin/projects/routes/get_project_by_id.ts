@@ -45,7 +45,7 @@ export const get_project_by_id:Handler = async (req:Request, res:Response) => {
         },
         id: {
           equals: params.id
-        }
+        },
       }
     })
 
@@ -55,6 +55,9 @@ export const get_project_by_id:Handler = async (req:Request, res:Response) => {
       where:{
         paddock_project_id: {
           equals: params.id
+        },
+        deleted: {
+          equals: false
         }
       }
     })
