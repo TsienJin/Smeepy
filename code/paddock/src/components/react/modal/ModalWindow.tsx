@@ -24,6 +24,12 @@ export const ModalWindow = (
     onClose()
   }
 
+  const handleEscapeClose = (event: { key: string; }) => {
+    if(event.key === "Escape"){
+      handleClose()
+    }
+  }
+
   useEffect(() => {
     setOpen(open)
   }, [open])
@@ -34,6 +40,14 @@ export const ModalWindow = (
       setSemLatch(closeSemaphore)
     }
   }, [closeSemaphore]);
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleEscapeClose, false)
+
+    return(()=>{
+      document.removeEventListener("keydown", handleEscapeClose, false)
+    })
+  }, []);
 
   return(
     <dialog className={`
