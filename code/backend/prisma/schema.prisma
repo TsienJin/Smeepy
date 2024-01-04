@@ -48,6 +48,8 @@ model paddock_api_key {
   label       String // Name of the API key
   description String?
 
+  deleted Boolean @default(false)
+
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
