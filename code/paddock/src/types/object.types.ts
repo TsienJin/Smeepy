@@ -21,7 +21,19 @@ export type Project = {
 // key itself will only be exposed immediately after creation.
 export type ApiKeyCredentials = {
   id:string,
-  key:string,
   label:string,
-  description:string
+  description?:string
+  key:string,
+}
+
+// Type for ApiKey used in non-sensitive contexts
+export type ApiKey = {
+  id:string,
+  label:string,
+  description?:string,
+
+  // component for controlling allowed products
+  paddock_api_key_services: {
+    enable_beaver:boolean
+  }
 }

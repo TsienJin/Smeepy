@@ -82,12 +82,10 @@ export const ProjectMain = () => {
           <AuxiliaryButton icon={<RefreshCwIcon size={16}/>} action={refreshProjects}>Refresh</AuxiliaryButton>
         </AuxiliaryButtonContainer>
         <Table loading={loading}>
-          <thead>
-            <HeaderRow>
-              <HeaderCell>Project</HeaderCell>
-              <HeaderCell>Owner</HeaderCell>
-            </HeaderRow>
-          </thead>
+          <HeaderRow>
+            <HeaderCell thClassName={``}>Project</HeaderCell>
+            <HeaderCell thClassName={`w-min`}>Owner</HeaderCell>
+          </HeaderRow>
           <TableBody>
             {projects.map(proj => {
               return(

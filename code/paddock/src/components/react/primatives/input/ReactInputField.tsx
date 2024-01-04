@@ -7,14 +7,15 @@ export const ReactInputField = (
     defaultVal = "",
     isError = false,
     type = "text",
-    hoist = () => {
-    }
+    hoist = () => {},
+    focus=false
   }: {
-    label?: string,
+    label?: string|any,
     defaultVal?: string,
     isError?: boolean,
     type?: "text" | "password"
     hoist?: any
+    focus?:boolean
   }
 ) => {
 
@@ -34,7 +35,7 @@ export const ReactInputField = (
   return(
     <div className={`flex flex-col justify-start items-start gap-y-1 max-w-full lg:w-auto grow`}>
       <label htmlFor={`input_id_${label}`} className={`text-shadow-600`}>{label}</label>
-      <input id={`input_id_${label}`} ref={ref} onChange={handleChange} defaultValue={defaultVal} type={type}
+      <input id={`input_id_${label}`} autoFocus={focus} ref={ref} onChange={handleChange} defaultValue={defaultVal} type={type}
       className={`
       px-4 py-3
       rounded

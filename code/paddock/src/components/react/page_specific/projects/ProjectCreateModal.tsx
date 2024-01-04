@@ -43,7 +43,7 @@ export const ProjectCreateModal = (
         Create Project
       </ModalHeader>
       <ReactFormWrapper>
-        <ReactInputField label={"Project name"} hoist={setName}/>
+        <ReactInputField focus={true} label={"Project name"} hoist={setName}/>
         <ReactInputAreaField label={"Description"} hoist={setDescription}/>
         <ReactActionButton text={"Create"} loading={loading} action={handleSubmit}/>
       </ReactFormWrapper>
