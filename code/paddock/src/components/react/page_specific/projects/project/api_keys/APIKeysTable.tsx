@@ -21,10 +21,10 @@ import useLocalStorageHook from "../../../../../../util/react/localstoragehook.t
 export const APIKeysTable = (
   {
     keys=[],
-    refreshApiKeys=()=>{}
+    refreshApiKeys=()=>{},
   }:{
     keys?:ApiKey[],
-    refreshApiKeys?:any
+    refreshApiKeys?:any,
   }
 ) => {
 
@@ -74,7 +74,7 @@ export const APIKeysTable = (
           <TableBody>
             {keys.map(key => {
               return(
-                <TableRow key={key.id}>
+                <TableRow key={key.id} className={`md:hover:bg-shadow-50 transition-colors`}>
                   <TableCell>
                     <div className={`flex flex-col justify-start items-start`}>
                       <span className={`font-semibold text-lg w-full`}>{key.label}</span>
