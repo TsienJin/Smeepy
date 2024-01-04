@@ -13,9 +13,11 @@ export const HeaderRow = (
 
 
   return(
-    <tr className={`
-    `}>
-      {children}
-    </tr>
+    <thead>
+      <tr className={`
+      `}>
+        {children}
+      </tr>
+    </thead>
   )
 }

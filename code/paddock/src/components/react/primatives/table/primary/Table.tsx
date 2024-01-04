@@ -49,7 +49,7 @@ export const Table = (
     `}>
       { !loading&&
         <table className={twMerge(className, `
-        w-full
+        w-full transition-all
         border-separate
         border-spacing-0
         `)}>
@@ -60,17 +60,16 @@ export const Table = (
       {
         loading &&
         <table className={twMerge(className, `
+          transition-all 
           w-full
           border-separate
           border-spacing-0
           `)}>
-            <thead>
-              <HeaderRow>
-                  <HeaderCell>
-                      <LoadingRect />
-                  </HeaderCell>
-              </HeaderRow>
-            </thead>
+            <HeaderRow>
+                <HeaderCell>
+                    <LoadingRect />
+                </HeaderCell>
+            </HeaderRow>
             <TableBody>
               <LoadingRow />
               <LoadingRow />
