@@ -29,7 +29,6 @@ export const ReactActionButton = (
 
   const handleKeyboardSubmit = (e:KeyboardEvent):any => {
     if(!loading && e.isTrusted && e.key==="Enter" && (e.metaKey || e.ctrlKey)){
-      console.log(action)
       action()
     }
   }
