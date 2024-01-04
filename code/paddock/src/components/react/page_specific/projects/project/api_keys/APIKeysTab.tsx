@@ -9,6 +9,7 @@ import type {ApiKey} from "../../../../../../types/object.types.ts";
 import get_project_api_keys from "../../../../../../functions/projects/get_project_api_keys.ts";
 import useLocalStorageHook from "../../../../../../util/react/localstoragehook.ts";
 import {APIKeysTable} from "./APIKeysTable.tsx";
+import client_refresh from "../../../../../../util/react/client_refresh.ts";
 
 /**
  * Component responsible for rendering the table with API keys and products etc.
@@ -19,10 +20,10 @@ import {APIKeysTable} from "./APIKeysTable.tsx";
 export const APIKeysTab = (
   {
     id,
-    updateDashboard=()=>{}
+    updateDashboard=()=>{},
   }:{
     id:string,
-    updateDashboard?:any
+    updateDashboard?:any,
   }
 ) => {
 
@@ -63,6 +64,12 @@ export const APIKeysTab = (
 
   useEffect(() => {
     fetchApiKeys()
+
+    window.addEventListener("keydown", client_refresh(fetchApiKeys), false)
+
+    return(()=>{
+      window.removeEventListener("keydown", client_refresh(fetchApiKeys), false)
+    })
   }, []);
 
   return(
