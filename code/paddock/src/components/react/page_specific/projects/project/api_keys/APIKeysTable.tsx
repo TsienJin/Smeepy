@@ -16,15 +16,23 @@ import {DeleteAPIKeyModal} from "./DeleteAPIKeyModal.tsx";
 import update_project_api_key_service_beaver
   from "../../../../../../functions/projects/update_project_api_key_service_beaver.ts";
 import useLocalStorageHook from "../../../../../../util/react/localstoragehook.ts";
+import {NewAPIKeyModal} from "./NewAPIKeyModal.tsx";
+import client_refresh from "../../../../../../util/react/client_refresh.ts";
 
 
 export const APIKeysTable = (
   {
     keys=[],
     refreshApiKeys=()=>{},
+    loading=false,
+    createKeyOnDone=()=>{},
+    projId=""
   }:{
     keys?:ApiKey[],
     refreshApiKeys?:any,
+    loading?:boolean,
+    createKeyOnDone?:any,
+    projId?:string
   }
 ) => {
 
@@ -57,6 +65,14 @@ export const APIKeysTable = (
     setTimeout(()=>{setModalChild(undefined)}, 200)
   }
 
+  useEffect(() => {
+    window.addEventListener("keydown", client_refresh(refreshApiKeys), false)
+
+    return(()=>{
+      window.removeEventListener("keydown", client_refresh(refreshApiKeys), false)
+    })
+  }, []);
+
   return(
     <>
       <ModalWindow open={modalChild!==undefined} onClose={handleEditApiKeyClose} closeSemaphore={modalCloseSem}>
@@ -65,7 +81,7 @@ export const APIKeysTable = (
       <div className={`
       w-full
       `}>
-        <Table>
+        <Table loading={loading && keys.length===0} displayEmptyChild={!loading && keys.length===0} emptyChildren={<NewAPIKeyModal id={projId} onDone={createKeyOnDone}/>}>
           <HeaderRow>
             <HeaderCell max={true}>Key</HeaderCell>
             <HeaderCell center={false}>Beaver</HeaderCell>
