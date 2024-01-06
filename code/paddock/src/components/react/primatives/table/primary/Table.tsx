@@ -28,18 +28,33 @@ const LoadingRow = () => {
 }
 
 
-
+/**
+ * Table component to wrap table and handle loading table.
+ * This component will also render `emptyChildren` when `displayEmptyChild` === true
+ * @param children
+ * @param emptyChildren
+ * @param displayEmptyChild
+ * @param className
+ * @param loading
+ * @constructor
+ */
 export const Table = (
   {
     children="",
+    emptyChildren="",
+    displayEmptyChild=false,
     className="",
     loading=false
   }:{
     children?:any,
+    emptyChildren?:any,
+    displayEmptyChild?:boolean
     className?:string,
     loading?:boolean
   }
 ) => {
+
+
 
   return(
     <div className={`
@@ -47,7 +62,20 @@ export const Table = (
     -mx-3 lg:-mx-6
     px-3 lg:px-6
     `}>
-      { !loading&&
+      {
+        displayEmptyChild && emptyChildren &&
+        <div className={`
+        w-full h-full
+        rounded p-4
+        border border-dashed border-shadow-300
+        flex flex-col justify-center items-center
+        min-h-[20vh]
+        `}>
+          {emptyChildren}
+        </div>
+      }
+      {
+        !displayEmptyChild && !loading &&
         <table className={twMerge(className, `
         w-full transition-all
         border-separate
@@ -58,7 +86,7 @@ export const Table = (
       }
 
       {
-        loading &&
+        !displayEmptyChild && loading &&
         <table className={twMerge(className, `
           transition-all 
           w-full

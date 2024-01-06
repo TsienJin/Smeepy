@@ -20,6 +20,33 @@ import type {Project_All_Type, Project_Type} from "../../../../backend_schema/ad
 import {ModalWindow} from "../../modal/ModalWindow.tsx";
 import {ProjectCreateModal} from "./ProjectCreateModal.tsx";
 import replaceLocal from "../../../../functions/util/replace_local.ts";
+import {ReactActionButton} from "../../primatives/click/ActionButton.tsx";
+
+
+
+
+
+const EmptyProjectList = (
+  {
+    action=()=>{}
+  }:{
+    action?:any
+  }
+) => {
+
+  return(
+    <>
+      <h1>Create your first project!</h1>
+      <ReactActionButton text={"Create Project"} action={action} />
+    </>
+  )
+
+}
+
+
+
+
+
 
 
 /**
@@ -44,12 +71,14 @@ export const ProjectMain = () => {
 
   const createProject = () => {
 
-    const created = (new_id:string) => {
-      setModalCloseSem(new_id)
-      replaceLocal(`/projects/${new_id}`)
-    }
 
-    setModalChild(<ProjectCreateModal onDone={created}/>)
+
+    setModalChild(<ProjectCreateModal onDone={createdProject}/>)
+  }
+
+  const createdProject = (new_id:string) => {
+    setModalCloseSem(new_id)
+    replaceLocal(`/projects/${new_id}`)
   }
 
   const refreshProjects = () => {
@@ -81,7 +110,7 @@ export const ProjectMain = () => {
           <AuxiliaryButton icon={<ArrowDownAZIcon size={16}/>}>Sort</AuxiliaryButton>
           <AuxiliaryButton icon={<RefreshCwIcon size={16}/>} action={refreshProjects}>Refresh</AuxiliaryButton>
         </AuxiliaryButtonContainer>
-        <Table loading={loading}>
+        <Table loading={loading} displayEmptyChild={!loading && projects.length===0} emptyChildren={<ProjectCreateModal onDone={createdProject}/>}>
           <HeaderRow>
             <HeaderCell thClassName={``}>Project</HeaderCell>
             <HeaderCell thClassName={`w-min`}>Owner</HeaderCell>
