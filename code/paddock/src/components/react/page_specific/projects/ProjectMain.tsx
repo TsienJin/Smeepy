@@ -120,7 +120,7 @@ export const ProjectMain = () => {
               return(
                 <TableRow key={proj.id} className={`md:hover:bg-shadow-50 transition-colors`}>
                   <TableCell>
-                    <a href={`/projects/${proj.id}`}>
+                    <a href={`/projects/${proj.id}`} >
                       <div>
                         <span className={`font-semibold text-lg w-full flex flex-row justify-start items-center gap-1`}>{proj.name}</span>
                         <p>{proj.description}</p>

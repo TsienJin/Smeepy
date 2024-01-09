@@ -15,7 +15,7 @@ const {id} = Astro.params
     <AuthGuard />
     <Dashboard>
         <!--<PageHeaderMain header={`${id}`} />-->
-        <ProjectMainPage client:load id={id}/>
+        <ProjectMainPage client:only="react" id={id}/>
     </Dashboard>
 
 </Global>

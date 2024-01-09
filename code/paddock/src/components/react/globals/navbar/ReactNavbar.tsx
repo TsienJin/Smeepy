@@ -21,7 +21,7 @@ export const ReactNavbar = () => {
       <div className={`
       bg-shadow rounded-xl h-full p-3 pt-6 flex flex-col gap-y-4
       `}>
-        <a href="/dash" draggable={false} className={`w-full`}>
+        <a href="/dash" draggable={false} className={`w-full`} data-astro-prefetch="hover">
           <img draggable={false} src="/logo/smeepy_logo_white.svg" alt="" className={`h-[26px] select-none ${expanded?"hidden":""}`}/>
           <img draggable={false} src="/logo/smeepy_full_white.svg" alt="" className={`h-[26px] select-none ${expanded?"":"hidden"}`}/>
         </a>

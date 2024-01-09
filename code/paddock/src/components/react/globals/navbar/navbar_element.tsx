@@ -22,7 +22,7 @@ export const ReactNavbarElement = (
   }
 
   return(
-    <a href={link} target={"_self"} onClick={handleClick} className={`w-full`}>
+    <a href={link} target={"_self"} onClick={handleClick} className={`w-full`} data-astro-prefetch="load">
       <div className={`
       transition-all
       flex flex-row p-[10px] rounded bg-shadow-900 md:hover:bg-shadow-800 text-shadow-400 w-full
